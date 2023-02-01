@@ -5,7 +5,7 @@
   <title>Title</title>
 </head>
 <body>
-  <button id="gps" onclick="javascript:gps();"></button>
+  <button id="gps" onclick="javascript:gps();">GPS</button>
   <div id="iploc"></div><br>
   <div id="lowloc"></div><br>
   <div id="highloc"></div>
@@ -17,7 +17,7 @@
     }
 
     function getiploc(data) {
-      getloc(data, "iploc");
+      getloc(data, "#iploc");
     }
 
     function getloc(data, src) {
