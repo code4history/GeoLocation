@@ -21,7 +21,7 @@
     }
 
     function getloc(data, src) {
-      document.getElementById(src).innerText(JSON.stringify(data).replace(/\n/mg, "<br>"));
+      document.querySelector(src).innerText = JSON.stringify(data).replace(/\n/mg, "<br>");
     }
 
     function iploc() {
