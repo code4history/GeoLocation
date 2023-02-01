@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    function callback(data) {
+      console.log(data);
+    }
+
+    const script = document.createElement('script');
+
+    script.src = 'https://ipinfo.io?callback=callback';
+    document.body.appendChild(script);
+    document.body.removeChild(script);
+  </script>
+</body>
+</html>
