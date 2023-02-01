@@ -5,16 +5,45 @@
   <title>Title</title>
 </head>
 <body>
+  <button id="gps" onclick="javascript:gps();"></button>
+  <div id="iploc"></div><br>
+  <div id="lowloc"></div><br>
+  <div id="highloc"></div>
   <script>
-    function callback(data) {
-      console.log(data);
+    function gps() {
+      iploc();
+      //lowloc();
+      //highloc();
     }
 
-    const script = document.createElement('script');
+    function getiploc(data) {
+      getloc(data, "iploc");
+    }
 
-    script.src = 'https://ipinfo.io?callback=callback';
-    document.body.appendChild(script);
-    document.body.removeChild(script);
+    function getloc(data, src) {
+      document.getElementById(src).innerText(JSON.stringify(data).replace(/\n/mg, "<br>"));
+    }
+
+    function iploc() {
+      const script = document.createElement('script');
+      script.src = 'https://ipinfo.io?callback=getiploc';
+      document.body.appendChild(script);
+      document.body.removeChild(script);
+    }
+
+    function lowloc() {
+      const script = document.createElement('script');
+      script.src = 'https://ipinfo.io?callback=getiploc';
+      document.body.appendChild(script);
+      document.body.removeChild(script);
+    }
+
+    function highloc() {
+      const script = document.createElement('script');
+      script.src = 'https://ipinfo.io?callback=getiploc';
+      document.body.appendChild(script);
+      document.body.removeChild(script);
+    }
   </script>
 </body>
 </html>
