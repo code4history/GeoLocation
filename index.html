@@ -12,12 +12,20 @@
   <script>
     function gps() {
       iploc();
-      //lowloc();
-      //highloc();
+      lowloc();
+      highloc();
     }
 
     function getiploc(data) {
       getloc(data, "#iploc");
+    }
+
+    function getlowloc(data) {
+      getloc(data, "#lowloc");
+    }
+
+    function gethighloc(data) {
+      getloc(data, "#highloc");
     }
 
     function getloc(data, src) {
@@ -32,17 +40,27 @@
     }
 
     function lowloc() {
-      const script = document.createElement('script');
-      script.src = 'https://ipinfo.io?callback=getiploc';
-      document.body.appendChild(script);
-      document.body.removeChild(script);
+      navigator.geolocation.getCurrentPosition(
+        getlowloc,
+        () => {},
+        {
+          enableHighAccuracy: false,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
     }
 
     function highloc() {
-      const script = document.createElement('script');
-      script.src = 'https://ipinfo.io?callback=getiploc';
-      document.body.appendChild(script);
-      document.body.removeChild(script);
+      navigator.geolocation.getCurrentPosition(
+        gethighloc,
+        () => {},
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
     }
   </script>
 </body>
