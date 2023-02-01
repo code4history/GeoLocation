@@ -16,19 +16,35 @@
       highloc();
     }
 
+    function dataformat(data) {
+      const coords = data.coords;
+      return {
+        timestamp: data.timestamp,
+        isHighAccuracy: data.isHighAccuracy,
+        accuracy: coords.accuracy,
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        altitude: coords.altitude,
+        altitudeAccuracy: coords.altitudeAccuracy,
+        heading: coords.heading,
+        speed: coords.speed
+      };
+    }
+
     function getiploc(data) {
       getloc(data, "#iploc");
     }
 
     function getlowloc(data) {
-      getloc(data, "#lowloc");
+      getloc(dataformat(data), "#lowloc");
     }
 
     function gethighloc(data) {
-      getloc(data, "#highloc");
+      getloc(dataformat(data), "#highloc");
     }
 
     function getloc(data, src) {
+      console.log(data);
       document.querySelector(src).innerText = JSON.stringify(data).replace(/\n/mg, "<br>");
     }
 
@@ -42,7 +58,7 @@
     function lowloc() {
       navigator.geolocation.getCurrentPosition(
         getlowloc,
-        () => {},
+        getlowloc,
         {
           enableHighAccuracy: false,
           timeout: 10000,
@@ -54,7 +70,7 @@
     function highloc() {
       navigator.geolocation.getCurrentPosition(
         gethighloc,
-        () => {},
+        gethighloc,
         {
           enableHighAccuracy: true,
           timeout: 10000,
